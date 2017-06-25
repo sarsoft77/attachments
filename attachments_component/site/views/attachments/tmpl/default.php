@@ -56,7 +56,7 @@ if ( $format != 'raw' ) {
 	}
 
 $html .= "<table>\n";
-$html .= "<caption>{$this->title}</caption>\n";
+//$html .= "<caption>{$this->title}</caption>\n";
 
 // Add the column titles, if requested
 if ( $this->show_column_titles ) {
@@ -168,7 +168,16 @@ for ($i=0, $n=count($attachments); $i < $n; $i++) {
 				$url = JRoute::_($base_url . "index.php?option=com_attachments&task=download&id=" . (int)$attachment->id);
 				}
 			else {
-				$url = $base_url . $attachment->url;
+				//$url = $base_url . $attachment->url;
+				$url =  $base_url . $attachment->url;
+				if ($attachment->file_type == 'application/pdf'){
+					//$url =  "https://docs.google.com/viewer?url=" . $url;
+				}
+				elseif ($attachment->file_type == 'image/jpeg'){
+				}
+				else{
+					$url =  "https://view.officeapps.live.com/op/view.aspx?src=" . $url;
+				}
 				if (strtoupper(substr(PHP_OS,0,3) == 'WIN')) {
 					$url = utf8_encode($url);
 					}
@@ -210,7 +219,7 @@ for ($i=0, $n=count($attachments); $i < $n; $i++) {
 				}
 			}
 		$html .= "</a>";
-		$html .= "<a class=\"at_url\" href=\"$url\"$target title=\"$tooltip\">$filename</a>";
+		//$html .= "<a class=\"at_url\" href=\"$url\"$target title=\"$tooltip\">$filename</a>";
 		}
 	else {
 		$tooltip = JText::sprintf('ATTACH_DOWNLOAD_THIS_FILE_S', $actual_filename);
@@ -225,9 +234,13 @@ for ($i=0, $n=count($attachments); $i < $n; $i++) {
 		if ( JString::strlen($description) == 0)
 			$description = '&nbsp;';
 		if ( $this->show_column_titles )
-			$html .= "<td class=\"at_description\">$description</td>";
+			$html .= "<td class=\"at_description\">";
+			$html .= "<a class=\"at_url\" href=\"$url\"$target title=\"$tooltip\">$description</a>";
+			$html .= "</td>";
 		else
-			$html .= "<td class=\"at_description\">[$description]</td>";
+			$html .= "<td class=\"at_description\">";
+			$html .= "<a class=\"at_url\" href=\"$url\"$target title=\"$tooltip\">$description</a>";
+			$html .= "</td>";
 		}
 
 	// Show the USER DEFINED FIELDs (maybe)

@@ -5,7 +5,7 @@
  * @package Attachments
  * @subpackage Attachments_Component
  *
- * @copyright Copyright (C) 2007-2017 Jonathan M. Cameron, All Rights Reserved
+ * @copyright Copyright (C) 2007-2018 Jonathan M. Cameron, All Rights Reserved
  * @license http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  * @link http://joomlacode.org/gf/project/attachments/frs/
  * @author Jonathan M. Cameron
@@ -15,6 +15,14 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <pre>
 Attachments 3.x Extension for Joomla 2.5+ and 3.x
+
+2018-03-26: Release 3.2.6
+    - 2017-05-27 Fixed category attachments for 3.7+ changes
+    - 2017-05-28 Another fix for category article list menu item
+    - 2017-07-12 Fixed issue with article selection
+    - 2017-07-13 Fixed issue with admin attachment list popups not working
+    - 2018-03-25 Added fixes to clean user inputs (fix SQL injection vulnerability)
+    - Tested with Joomla 3.8.6
 
 2017-04-30: Release 3.2.5
 	- 2016-05-13 Fix for problem with delete buttons
